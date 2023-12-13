@@ -183,7 +183,7 @@ class App {
                         console.error(erro.message);
                     }
                     else {
-                        console.error(erro.message);
+                        console.error('Erro inesperado!');
                     }
                 }
                 break;

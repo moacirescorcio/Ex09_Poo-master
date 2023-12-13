@@ -65,7 +65,7 @@ class App {
             this._RedeSocial.carregarDeArquivo();
             console.log('Dados do arquivo carregados com sucesso!');
         }
-        }catch(erro){
+        }catch(erro: any){
             if (erro instanceof ErroCarregamento) {
                 console.error(erro.message);
                 
@@ -93,7 +93,7 @@ class App {
                 this._RedeSocial.incluirPerfil(novoPerfil);
                 console.log('Perfil incluído com sucesso!');
                 
-                }catch(erro){
+                }catch(erro: any){
                     if (erro instanceof PerfilExistente) {
                         console.error(erro.message);
                         // lógica para tratamento específico desse tipo de erro na RedeSocial, se necessário
@@ -111,7 +111,7 @@ class App {
                 const emailconsulta = question('Digite o email do perfil: ');
                 const resultado = this._RedeSocial.consultarPerfil(idconsulta, nomeconsulta, emailconsulta);
                 mostrarPerfil(resultado);
-                }catch(erro){
+                }catch(erro: any){
                     if (erro instanceof ConsultarPerfilError) {
                         console.error(`\nErro ao consultar perfil na RedeSocial: ${erro.message}`);
                         // lógica para tratamento específico desse tipo de erro na RedeSocial, se necessário
@@ -127,7 +127,7 @@ class App {
                 console.log(`Excluir um Perfil\n`);
                 const id = parseInt(question('Qual o ID do Perfil: '));
                 this._RedeSocial.excluirPerfil(id);
-                }catch(erro){
+                }catch(erro: any){
                     if (erro instanceof ExcluirPerfil) {
                         console.error(erro.message);
                         // Lógica para tratamento específico desse tipo de erro na RedeSocial, se necessário
@@ -162,7 +162,7 @@ class App {
                 console.log(`Criar Postagem\n`);
                 const novaPostagem = DadosPostagem();
                 this._RedeSocial.incluirPostagem(novaPostagem);
-                }catch(erro){
+                }catch(erro: any){
                     if (erro instanceof ErroInserirPostagem) {
                         console.error(erro.message);
                     } else {
@@ -177,11 +177,11 @@ class App {
                 const id = parseInt(question('Digite o id da postagem: '));
                 const resultado = this._RedeSocial.consultarPostagens(id);
                 MostrarPostagens(resultado);
-                }catch(erro){
+                }catch(erro: any){
                     if(erro instanceof ErroConsultaPostagem){
                         console.error(erro.message)
                     }else{
-                        console.error(erro.message)
+                        console.error('Erro inesperado!')
                     }
                 }
                 break;
@@ -191,7 +191,7 @@ class App {
                 const idPerfil = parseInt(question('Informe o Id do Perfil: '));
                 const PostagensPerfil = this._RedeSocial.exibirPostagensPorPerfil(idPerfil);
                 MostrarPostagens(PostagensPerfil);
-                }catch(erro){
+                }catch(erro: any){
                     if(erro instanceof ErroConsultaPostagem){
                         console.error(erro.message)
                     }else{
@@ -205,7 +205,7 @@ class App {
                 const hashtag = question('Informe a hashtag que deseja procurar: ');
                 const PostagemPorHashtag = this._RedeSocial.exibirPostagensPorHashtag(hashtag);
                 MostrarPostagens(PostagemPorHashtag);
-                }catch(erro){
+                }catch(erro: any){
                     if(erro instanceof ErroConsultaPostagem){
                         console.error(erro.message)
                     }else{
@@ -218,7 +218,7 @@ class App {
                 console.log(`Postagens Populares\n`);
                 const PostagensPopulares = this._RedeSocial.exibirPostagensPopulares();
                 MostrarPostagens(PostagensPopulares);
-                }catch(erro){
+                }catch(erro: any){
                     if(erro instanceof ErroPostagensPopulares){
                         console.error(erro.message)
                     }else{
@@ -231,7 +231,7 @@ class App {
                 console.log(`Apagar Postagem\n`);
                 const idPostagem = parseInt(question('Informe o ID da Postagem que deseja apagar: '));
                 this._RedeSocial.excluirPostagem(idPostagem);
-                }catch(erro){
+                }catch(erro: any){
                     if(erro instanceof ErroConsultaPostagem){
                         console.error(erro.message)
                     }else{
@@ -244,7 +244,7 @@ class App {
                 console.log(`Listar Todas as Postagens\n`);
                 const todasPostagens = this._RedeSocial.exibirTodasAsPostagens();
                 MostrarPostagens(todasPostagens);
-                }catch(erro){
+                }catch(erro: any){
                     if(erro instanceof ErroConsultaPostagem){
                         console.error(erro.message)
                     }else{
@@ -271,7 +271,7 @@ class App {
                 console.log(`Curtir Postagem\n`);
                 const idPostCurtida = parseInt(question('Informe o ID da Postagem que deseja curtir: '));
                 this._RedeSocial.curtir(idPostCurtida);
-                }catch(erro){
+                }catch(erro: any){
                     if(erro instanceof ErroConsultaPostagem){
                         console.error(`Não foi possível curtir a postagem: ${erro.message}`)
                     }else{
@@ -284,7 +284,7 @@ class App {
                 console.log(`Descurtir Postagem\n`);
                 const idPostDescurtida = parseInt(question('Informe o ID da Postagem que deseja descurtir: '));
                 this._RedeSocial.descurtir(idPostDescurtida);
-                }catch(erro){
+                }catch(erro: any){
                     if(erro instanceof ErroConsultaPostagem){
                         console.error(`Não foi possível curtir a postagem: ${erro.message}`)
                     }else{
@@ -299,7 +299,7 @@ class App {
                 console.log(`Decrementar Visualização\n`);
                 const idPostDecrementar = parseInt(question('Informe o ID da Postagem que deseja decrementar a visualização: '));
                 this._RedeSocial.decrementarVisualizacoes(idPostDecrementar);
-                }catch(erro){
+                }catch(erro: any){
                     if(erro instanceof ErroConsultaPostagem){
                         console.error(`Não foi possível decrementar visualizações na postagem: ${erro.message}`)
                     }else{
@@ -313,7 +313,7 @@ class App {
                 const idPerfilSeguidor = parseInt(question('Digite o ID do perfil seguidor: '));
                 const idPerfilSeguido = parseInt(question('Digite o ID do perfil que deseja seguir: '));
                 this._RedeSocial.seguirPerfil(idPerfilSeguidor, idPerfilSeguido);
-                }catch(erro){
+                }catch(erro: any){
                     if(erro instanceof ConsultarPerfilError){
                         console.error(`Não foi possível seguir: ${erro.message}`)
                     }else{
@@ -337,7 +337,7 @@ class App {
             case '1':
                 try{
                 this._RedeSocial.salvarEmArquivo();
-                }catch(erro){
+                }catch(erro: any){
                     if (erro instanceof ErroSalvamento) {
                         console.error(erro.message);
                         // Lógica para tratamento específico desse tipo de erro na RedeSocial, se necessário

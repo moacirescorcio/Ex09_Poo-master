@@ -56,7 +56,7 @@ export class RedeSocial {
             } else {
                 throw new PerfilExistente('Perfil já existente!');
             }
-        } catch (erro) {
+        } catch (erro: any) {
             throw new PerfilExistente('Erro ao incluir perfil: ' + erro.message);
         }
     }
@@ -74,7 +74,7 @@ export class RedeSocial {
     incluirPostagem(postagem: Postagem): void {
         try{
          this._RepositorioDePostagens.incluirPostagem(postagem)
-        }catch(erro){
+        }catch(erro: any){
             throw new ErroInserirPostagem('Erro ao inserir:' + erro.message)
         }
     }
@@ -82,7 +82,7 @@ export class RedeSocial {
     consultarPostagens(id?: number, texto?: string, hashtag?: string, perfil?: number): Postagem[] | null {
         try{
          return this._RepositorioDePostagens.consultar(id, texto, hashtag, perfil)
-        }catch(erro){
+        }catch(erro: any){
             throw new ErroConsultaPostagem('Erro ao consultar postagem:' + erro.message)
         }
     }

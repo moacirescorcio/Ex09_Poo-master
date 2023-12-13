@@ -55,6 +55,8 @@ export class RepositorioDePostagens implements IRepositorioPostagens {
     
             if (postagensEncontradas.length !== 0) {
                 return postagensEncontradas;
+            }else{
+                return null
             }
         } catch (error) {
             throw new ErroConsultaPostagem('Postagem não encontrada!')
