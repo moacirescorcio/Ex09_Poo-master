@@ -4,7 +4,7 @@
 import { RepositorioDePerfis, ConsultarPerfilError, PerfilExistente, ExcluirPerfil } from '../repositorios/RepositorioDePerfis';
 import { ErroConsultaPostagem, ErroInserirPostagem, RepositorioDePostagens } from '../repositorios/RepositorioDePostagens';
 import { Perfil } from "../modelos/Perfil";
-import { Postagem } from "../modelos/Postagem";
+import { ErroCurti, Postagem } from "../modelos/Postagem";
 import { PostagemAvancada } from "../modelos/PostagemAvancada";
 
 import * as fs from 'fs';
@@ -96,8 +96,8 @@ export class RedeSocial {
                 console.log(`Você curtiu a postagem com ID ${idPostagem}\n`);
             }
         }
-        }catch(erro){
-            throw new ErroConsultaPostagem('Postagem não encontrada!')
+        }catch(erro: any){
+            throw new ErroCurti('Erro ao curtir: Postagem não encontrada!')
         }
     }
 

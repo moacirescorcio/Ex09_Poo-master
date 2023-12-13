@@ -7,6 +7,7 @@ const Utils_1 = require("../utils/Utils");
 const readline_sync_1 = require("readline-sync");
 const RepositorioDePerfis_1 = require("../repositorios/RepositorioDePerfis");
 const RepositorioDePostagens_1 = require("../repositorios/RepositorioDePostagens");
+const Postagem_1 = require("../modelos/Postagem");
 class App {
     constructor(RedeSocial) {
         this._RedeSocial = RedeSocial;
@@ -284,7 +285,7 @@ class App {
                     this._RedeSocial.curtir(idPostCurtida);
                 }
                 catch (erro) {
-                    if (erro instanceof RepositorioDePostagens_1.ErroConsultaPostagem) {
+                    if (erro instanceof Postagem_1.ErroCurti) {
                         console.error(`Não foi possível curtir a postagem: ${erro.message}`);
                     }
                     else {

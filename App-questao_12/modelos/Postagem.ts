@@ -1,6 +1,13 @@
 
 import { Perfil } from "./Perfil";
 
+export class ErroCurti extends Error{
+    constructor(message: string) {
+        super(message);
+        this.name = 'Errocurtir';
+    }
+}
+
 export class Postagem {
     private _id: number;
     private _texto: string;
@@ -46,7 +53,11 @@ export class Postagem {
     }
 
     curtir(): void {
+        try{
         this._curtidas++;
+        }catch(erro: any){
+            throw new ErroCurti('Erro ao curtir')
+        }
     }
 
     descurtir(): void {

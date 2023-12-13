@@ -1,6 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Postagem = void 0;
+exports.Postagem = exports.ErroCurti = void 0;
+class ErroCurti extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'Errocurtir';
+    }
+}
+exports.ErroCurti = ErroCurti;
 class Postagem {
     constructor(id, texto, curtidas, descurtidas, data, perfil) {
         this._id = id;
@@ -29,7 +36,12 @@ class Postagem {
         return this._perfil;
     }
     curtir() {
-        this._curtidas++;
+        try {
+            this._curtidas++;
+        }
+        catch (erro) {
+            throw new ErroCurti('Erro ao curtir');
+        }
     }
     descurtir() {
         this._descurtidas++;

@@ -5,6 +5,7 @@ import { MostrarPostagens, mostrarPerfil, DadosPerfil, DadosPostagem } from "../
 import { question } from "readline-sync";
 import { RepositorioDePerfis, ConsultarPerfilError, PerfilExistente, ExcluirPerfil} from "../repositorios/RepositorioDePerfis";
 import { ErroConsultaPostagem, ErroInserirPostagem, RepositorioDePostagens } from "../repositorios/RepositorioDePostagens";
+import { ErroCurti } from "../modelos/Postagem";
 
 
 class App {
@@ -272,7 +273,7 @@ class App {
                 const idPostCurtida = parseInt(question('Informe o ID da Postagem que deseja curtir: '));
                 this._RedeSocial.curtir(idPostCurtida);
                 }catch(erro: any){
-                    if(erro instanceof ErroConsultaPostagem){
+                    if(erro instanceof ErroCurti){
                         console.error(`Não foi possível curtir a postagem: ${erro.message}`)
                     }else{
                         console.error(erro.message)

@@ -115,7 +115,7 @@ class RedeSocial {
             }
         }
         catch (erro) {
-            throw new RepositorioDePostagens_1.ErroConsultaPostagem('Postagem não encontrada!');
+            throw new Postagem_1.ErroCurti('Erro ao curtir: Postagem não encontrada!');
         }
     }
     //vi-ok
